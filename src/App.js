@@ -1,9 +1,14 @@
 import React from "react";
-import styles from "./App.module.scss";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+
+import Main from "./js/Main.jsx";
 
 const App = () => {
-  console.log(styles);
-  return <div className={styles.App}>Hello, I'm Kevin and I build things</div>;
+  return (
+    <Router>
+      <Route exact path="/" component={Main} />
+    </Router>
+  );
 };
 
 export default App;
