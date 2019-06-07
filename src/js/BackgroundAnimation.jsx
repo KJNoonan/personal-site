@@ -1,6 +1,12 @@
 import React, { useRef, useLayoutEffect } from "react";
 import styles from "./BackgroundAnimation.module.scss";
 import { AutoSizer } from "react-virtualized";
+import {
+  appBackgroundColorShade,
+  appBackgroundColorHighlight
+} from "../css/constants.scss";
+
+console.log(appBackgroundColorHighlight);
 
 const getBouncingCircleUpdates = ctx => {
   let x = Math.random() * window.innerWidth;
@@ -11,8 +17,10 @@ const getBouncingCircleUpdates = ctx => {
   return () => {
     ctx.beginPath();
     ctx.arc(x, y, radius, 0, Math.PI * 2, false);
-    ctx.strokeStyle = "blue";
+    ctx.strokeStyle = appBackgroundColorHighlight;
+    ctx.fillStyle = appBackgroundColorShade;
     ctx.stroke();
+    ctx.fill();
     if (x + radius > window.innerWidth || x - radius < 0) {
       dx = -dx;
     }

@@ -1,3 +1,13 @@
-$app-background-color: #ca9bdd;
-$app-font-color: #444444;
-$app-font-color-pop: #ffdab9;
+$app-background-color: #a394ff;
+$app-background-color-shade: #711c99;
+$app-background-color-highlight: #c9a0dc;
+$app-font-color: #fff5d4;
+$app-font-color-highlight: #cca962;
+
+:export {
+  appBackgroundColor: $app-background-color;
+  appBackgroundColorShade: $app-background-color-shade;
+  appBackgroundColorHighlight: $app-background-color-highlight;
+  appFontColor: $app-font-color;
+  appFontColorHighlight: $app-font-color-highlight;
+}
