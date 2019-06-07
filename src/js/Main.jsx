@@ -11,10 +11,10 @@ const generateText = () => (
 
 const Main = () => {
   return (
-    <div className={styles.page}>
+    <>
       <BackgroundAnimation />
-      {generateText()}
-    </div>
+      <div className={styles.page}>{generateText()}</div>
+    </>
   );
 };
 
