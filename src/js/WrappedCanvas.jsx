@@ -5,20 +5,21 @@ import {
   SIZE_OF_METEOR
 } from "./canvasMountainUtils.js";
 
-let meteors = [];
+const meteors = [];
 
 const draw = (ctx, width, height) => {
+  let existingObjects = [...meteors];
   const animate = () => {
     ctx.clearRect(0, 0, width, height);
     drawMountain(ctx, width, height);
-    meteors = meteors.reduce((acc, meteor) => {
+    existingObjects = existingObjects.reduce((acc, meteor) => {
       const yPos = meteor();
       if (yPos < height - SIZE_OF_METEOR) {
         acc.push(meteor);
       }
       return acc;
     }, []);
-    if (meteors.length > 0) {
+    if (existingObjects.length > 0) {
       requestAnimationFrame(animate);
     }
   };
@@ -41,10 +42,8 @@ const WrappedCanvas = ({ width, height }) => {
       height
     );
     meteors.push(meteor);
-    if (meteors.length === 1) {
-      //kick off animation
-      draw(context, width, height);
-    }
+    //kick off animation
+    draw(context, width, height);
   };
 
   useLayoutEffect(() => {
