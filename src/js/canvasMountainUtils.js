@@ -26,28 +26,24 @@ export const drawMountain = (ctx, width, height) => {
   ctx.closePath();
 };
 
-const SIZE_OF_METOR = 5;
+export const SIZE_OF_METEOR = 5;
 const DROP_SPEED = 6;
+
 export const spawnMeteor = (ctx, x, y, width, height) => {
-  console.log(x, y);
-  let spawningX = Math.random() * (width - SIZE_OF_METOR);
-  let spawningY = -1 * SIZE_OF_METOR;
+  let spawningX = Math.random() * (width - SIZE_OF_METEOR);
+  let spawningY = -1 * SIZE_OF_METEOR;
   const slope = (y - spawningY) / (x - spawningX);
   const yIntercept = -1 * slope * x + y;
-  const animate = () => {
+  return () => {
     ctx.beginPath();
-    ctx.clearRect(0, 0, width, height);
-    ctx.arc(spawningX, spawningY, SIZE_OF_METOR, 0, 2 * Math.PI);
+    ctx.arc(spawningX, spawningY, SIZE_OF_METEOR, 0, 2 * Math.PI);
     ctx.strokeStyle = "black";
     ctx.stroke();
     ctx.closePath();
-    drawMountain(ctx, width, height);
 
     //begin calculations for the next draw
     spawningY = spawningY + DROP_SPEED;
     spawningX = (spawningY - yIntercept) / slope;
-    console.log(spawningX, spawningY);
-    requestAnimationFrame(animate);
+    return spawningY;
   };
-  return animate;
 };
