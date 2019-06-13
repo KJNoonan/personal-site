@@ -26,11 +26,10 @@ const draw = (ctx, width, height) => {
   animate();
 };
 
-const WrappedCanvas = ({ width, height }) => {
-  const canvas = useRef(null);
+let canvas = null;
 
-  const onClickSpawnMeteor = event => {
-    console.log("clicked");
+const onClickSpawnMeteor = event => {
+  if (canvas) {
     const context = canvas.current.getContext("2d");
     const width = canvas.current.width;
     const height = canvas.current.height;
@@ -44,14 +43,19 @@ const WrappedCanvas = ({ width, height }) => {
     meteors.push(meteor);
     //kick off animation
     draw(context, width, height);
-  };
+  }
+};
+
+window.addEventListener("click", onClickSpawnMeteor);
+
+const WrappedCanvas = ({ width, height }) => {
+  canvas = useRef(null);
 
   useLayoutEffect(() => {
     const context = canvas.current.getContext("2d");
     const width = canvas.current.width;
     const height = canvas.current.height;
     draw(context, width, height);
-    window.addEventListener("click", onClickSpawnMeteor);
   });
 
   return <canvas ref={canvas} width={width} height={height} />;

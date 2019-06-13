@@ -30,6 +30,7 @@ export const SIZE_OF_METEOR = 5;
 const DROP_SPEED = 6;
 
 export const spawnMeteor = (ctx, x, y, width, height) => {
+  console.log('spawning')
   let spawningX = Math.random() * (width - SIZE_OF_METEOR);
   let spawningY = -1 * SIZE_OF_METEOR;
   const slope = (y - spawningY) / (x - spawningX);
