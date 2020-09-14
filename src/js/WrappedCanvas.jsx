@@ -2,7 +2,7 @@ import React, { useRef, useLayoutEffect } from "react";
 import {
   drawMountain,
   spawnMeteor,
-  SIZE_OF_METEOR
+  SIZE_OF_METEOR,
 } from "./canvasMountainUtils.js";
 
 const meteors = [];
@@ -28,7 +28,7 @@ const draw = (ctx, width, height) => {
 
 let canvas = null;
 
-const onClickSpawnMeteor = event => {
+const onClickSpawnMeteor = (event) => {
   if (canvas) {
     const context = canvas.current.getContext("2d");
     const width = canvas.current.width;

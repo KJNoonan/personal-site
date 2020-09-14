@@ -1,6 +1,6 @@
 import {
   appBackgroundColorShade,
-  appBackgroundColorHighlight
+  appBackgroundColorHighlight,
 } from "../css/constants.scss";
 
 export const drawMountain = (ctx, width, height) => {
@@ -15,7 +15,7 @@ export const drawMountain = (ctx, width, height) => {
 
   //draw highlights
   ctx.beginPath();
-  ctx.lineWidth = 15;
+  ctx.lineWidth = 5;
   ctx.moveTo(width / 2, height / 3);
   ctx.lineTo(width / 10, height);
   ctx.moveTo(width / 2, height / 3);
@@ -30,7 +30,6 @@ export const SIZE_OF_METEOR = 5;
 const DROP_SPEED = 6;
 
 export const spawnMeteor = (ctx, x, y, width, height) => {
-  console.log('spawning')
   let spawningX = Math.random() * (width - SIZE_OF_METEOR);
   let spawningY = -1 * SIZE_OF_METEOR;
   const slope = (y - spawningY) / (x - spawningX);
@@ -38,8 +37,10 @@ export const spawnMeteor = (ctx, x, y, width, height) => {
   return () => {
     ctx.beginPath();
     ctx.arc(spawningX, spawningY, SIZE_OF_METEOR, 0, 2 * Math.PI);
-    ctx.strokeStyle = "black";
+    ctx.strokeStyle = appBackgroundColorHighlight;
+    ctx.lineWidth = 1;
     ctx.stroke();
+    ctx.fill();
     ctx.closePath();
 
     //begin calculations for the next draw
